@@ -1,13 +1,11 @@
 source('header.R')
 library(mapedit)
 
-routes <- st_read("input/ikeda.gpkg", "routes")
-sites <- st_read("input/ikeda.gpkg", layer = "sites") %>% st_transform(3005)
-creek <- st_read("input/ikeda.gpkg", "creek") %>% st_transform(3005)
-building <- st_read("input/ikeda.gpkg", layer = "buildings") %>% st_transform(3005)
-train <- st_read("input/ikeda.gpkg", layer = "train") %>% st_transform(3005)
-
-bounds <- ps_create_bounds(sites, pad = c(500, 1500, 500, 1500))
+ps_load_spatial_db(path = "input/ikeda.gpkg", fun = function(x){st_transform(x, 3005)})
+rm(ikeda)
 
 set_sub("get")
 save_datas()
+
+
+
