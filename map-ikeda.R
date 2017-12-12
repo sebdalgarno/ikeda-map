@@ -83,3 +83,10 @@ print(map, vp = vpm)
 print(inset, vp = vpi)
 dev.off()
 
+pdf(file = "output/plots/maps/ikeda_map.pdf", width = 12, height = 9)
+vpm <- viewport(width = 1, height = 1, x = 0.5, y = 0.5)
+vpi <- viewport(width = 0.45, height = 0.45, x = 0.5, y = 0.922, just = c("right", "top"))
+print(map, vp = vpm)
+print(inset, vp = vpi)
+dev.off()
+
