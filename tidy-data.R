@@ -27,15 +27,14 @@ village <- filter(sites, Description == "haida village") %>%
   mutate(legend = "Haida Village Sites")
 
 
-sites_town <- filter(sites, !(Name %in% c("Bunk House", "Ore Bins", "Power House"))) %>%
-  filter(Description == "building") %>%
+sites_town <- filter(sites, Description == "building") %>%
   mutate(legend = "Building")
 
-bounds_town <- ps_create_bounds(sites_town, pad = c(50, 50, 50, 50)) %>%
+bounds_town <- ps_create_bounds(train, pad = c(50, 50, 100, -1000)) %>%
   st_sf
 
-ikeda_coast <- st_intersection(coastline, bounds)
-ikeda_island <- st_intersection(island, bounds)
+ikeda_coast <- st_intersection(coastline, bounds_bay)
+ikeda_island <- st_intersection(island, bounds_bay)
 
 set_sub("tidy")
 save_datas()
